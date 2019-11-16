@@ -1,7 +1,7 @@
 version: '2'
 services:
   openfire:
-    image: gizmotronic/openfire:4.4.3
+    image: gizmotronic/openfire:4.4.4
     ports:
       - "9090:9090/tcp"
       - "9091:9091/tcp"
