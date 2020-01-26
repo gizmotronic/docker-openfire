@@ -1,4 +1,4 @@
-# gizmotronic/openfire:4.4.4
+# gizmotronic/openfire:4.5.0
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
