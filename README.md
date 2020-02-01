@@ -1,4 +1,4 @@
-# gizmotronic/openfire:4.5.0
+# miguelwill/openfire:4.5.1
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -20,13 +20,14 @@ Openfire is a real time collaboration (RTC) server licensed under the Open Sourc
 Due to Oracle Java license changes, this image is built exclusively using OpenJDK starting with Openfire 4.3.2.
 This project is otherwise almost entirely identical to [sameersbn/openfire](/sameersbn/openfire).
 
+In this case, this is a gizmotronic/docker-openfire fork, which will be updated in parallel based on changes to it, thus presenting an alternative with the latest available versions of OpenFire.
+
 ## Contributing
 
 If you find this image useful here's how you can help:
 
 - Send a pull request with your awesome features and bug fixes
 - Help users resolve their [issues](../../issues?q=is%3Aopen+is%3Aissue).
-- Support the development of this image with a [donation](http://www.damagehead.com/donate/)
 
 ## Known issues
 
@@ -54,16 +55,16 @@ If the above recommendations do not help then [report your issue](../../issues/n
 
 ## Installation
 
-Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/gizmotronic/openfire) and is the recommended method of installation.
+Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/miguelwill/openfire) and is the recommended method of installation.
 
 ```bash
-docker pull gizmotronic/openfire:4.5.0
+docker pull miguelwill/openfire:4.5.1
 ```
 
 Alternatively you can build the image yourself.
 
 ```bash
-docker build -t gizmotronic/openfire github.com/gizmotronic/docker-openfire
+docker build -t miguelwill/openfire github.com/miguelwill/docker-openfire
 ```
 
 ## Quickstart
@@ -74,7 +75,7 @@ Start Openfire using:
 docker run --name openfire -d --restart=always \
   --publish 9090:9090 --publish 5222:5222 --publish 7777:7777 \
   --volume /srv/docker/openfire:/var/lib/openfire \
-  gizmotronic/openfire:4.5.0
+  miguelwill/openfire:4.5.1
 ```
 
 *Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
@@ -101,7 +102,7 @@ You may append options to the startup command to configure the JVM:
 ```bash
 docker run -name openfire -d \
   [DOCKER_OPTIONS] \
-  gizmotronic/openfire:4.5.0 \
+  miguelwill/openfire:4.5.1 \
   -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode
 ```
 
@@ -122,7 +123,7 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull gizmotronic/openfire:4.5.0
+  docker pull miguelwill/openfire:4.5.1
   ```
 
   2. Stop the currently running image:
@@ -142,7 +143,7 @@ To upgrade to newer releases:
   ```bash
   docker run -name openfire -d \
     [OPTIONS] \
-    gizmotronic/openfire:4.5.0
+    miguelwill/openfire:4.5.1
   ```
 
 ## Shell Access
@@ -157,3 +158,4 @@ docker exec -it openfire bash
 
   * http://www.igniterealtime.org/projects/openfire/
   * https://library.linode.com/communications/xmpp/openfire/ubuntu-12.04-precise-pangolin
+  * https://github.com/gizmotronic/docker-openfire (fork source and updated)
