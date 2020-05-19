@@ -1,7 +1,7 @@
 version: '2'
 services:
   openfire:
-    image: miguelwill/openfire:4.5.1
+    image: miguelwill/openfire:4.5.2
     ports:
       - "9090:9090/tcp"
       - "9091:9091/tcp"
