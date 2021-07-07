@@ -1,4 +1,4 @@
-# miguelwill/openfire:4.6.0
+# miguelwill/openfire:4.6.4
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -58,7 +58,7 @@ If the above recommendations do not help then [report your issue](../../issues/n
 Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/miguelwill/openfire) and is the recommended method of installation.
 
 ```bash
-docker pull miguelwill/openfire:4.6.0
+docker pull miguelwill/openfire:4.6.4
 ```
 
 Alternatively you can build the image yourself.
@@ -75,7 +75,7 @@ Start Openfire using:
 docker run --name openfire -d --restart=always \
   --publish 9090:9090 --publish 5222:5222 --publish 7777:7777 \
   --volume /srv/docker/openfire:/var/lib/openfire \
-  miguelwill/openfire:4.6.0
+  miguelwill/openfire:4.6.4
 ```
 
 *Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
@@ -102,7 +102,7 @@ You may append options to the startup command to configure the JVM:
 ```bash
 docker run -name openfire -d \
   [DOCKER_OPTIONS] \
-  miguelwill/openfire:4.6.0 \
+  miguelwill/openfire:4.6.4 \
   -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode
 ```
 
@@ -123,7 +123,7 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull miguelwill/openfire:4.6.0
+  docker pull miguelwill/openfire:4.6.4
   ```
 
   2. Stop the currently running image:
@@ -143,7 +143,7 @@ To upgrade to newer releases:
   ```bash
   docker run -name openfire -d \
     [OPTIONS] \
-    miguelwill/openfire:4.6.0
+    miguelwill/openfire:4.6.4
   ```
 
 ## Shell Access

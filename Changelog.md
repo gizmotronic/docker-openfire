@@ -1,4 +1,8 @@
 # Changelog
+**4.6.4**
+- openfire: upgrade to 4.6.4
+- openjdk: upgraded to 8u292
+
 **4.6.0**
 - openfire: upgrade to 4.6.0
 - openjdk : upgraded to 8u265
