@@ -1,0 +1,7 @@
+{
+  "phabricator.uri": "https://devcentral.nasqueron.org/",
+  "repository.callsign": "DO",
+  "load": [
+    "shellcheck-linter"
+  ]
+}

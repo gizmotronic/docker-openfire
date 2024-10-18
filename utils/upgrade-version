@@ -1,0 +1,83 @@
+#!/bin/sh
+
+#   -------------------------------------------------------------
+#   Prepare an upgrade change and send it to review
+#   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#   Project:        Nasqueron
+#   Author:         Sébastien Santoro aka Dereckson
+#   License:        BSD-2-Clause
+#   -------------------------------------------------------------
+
+# Docker host for container
+SERVER=docker-002
+
+#   -------------------------------------------------------------
+#   Parse arguments
+#
+#   Usage: upgrade-version <new version>
+#   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <new version>"
+    exit 1
+fi
+
+if [ ! -f VERSION ]; then
+    echo This script must be run at the repository root. A VERSION file is expected.
+    exit 2
+fi
+
+OLD_VERSION=$(cat VERSION)
+NEW_VERSION=$1
+
+#   -------------------------------------------------------------
+#   Determine available toolchain
+#
+#     :: GNU sed path
+#     :: Arcanist is installed?
+#   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+if hash gsed 2> /dev/null; then
+    SED="gsed"
+else
+    SED="sed"
+fi
+
+hash arc 2> /dev/null
+WITH_ARCANIST=$?
+
+#   -------------------------------------------------------------
+#   Update files
+#   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+echo "$NEW_VERSION" > VERSION
+
+for f in Dockerfile README.md docker-compose.yml; do
+    $SED -i "s/$OLD_VERSION/$NEW_VERSION/g" $f
+done
+
+#   -------------------------------------------------------------
+#   Prepare change for review
+#   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+git checkout -b "upgrade/$NEW_VERSION"
+git commit VERSION Dockerfile README.md docker-compose.yml \
+  -m "Upgrade to Openfire $NEW_VERSION" -m "" \
+  -m "Reference: https://download.igniterealtime.org/openfire/docs/latest/changelog.html"
+
+if [ $WITH_ARCANIST ]; then
+    arc diff "HEAD^"
+else
+    git show
+fi
+
+echo "Next steps:"
+echo "  - Accept the revision"
+echo '  - Merge it to master with `arc land`'
+echo "  - Tag commit with \`git tag $NEW_VERSION\`"
+echo '  - Publish tag with `git push --tags`'
+
+echo "To deploy:"
+echo "  - ssh $SERVER sudo docker pull nasqueron/openfire"
+echo "  - cd <ops repo>"
+echo "  - salt $SERVER state.sls roles/paas-docker/containers/openfire"
