@@ -1,4 +1,4 @@
-# gizmotronic/openfire:4.4.4
+# gedeeinstein/openfire:4.8.3
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -17,16 +17,8 @@
 
 Openfire is a real time collaboration (RTC) server licensed under the Open Source Apache License. It uses the only widely adopted open protocol for instant messaging, XMPP (also called Jabber). Openfire is incredibly easy to setup and administer, but offers rock-solid security and performance.
 
-Due to Oracle Java license changes, this image is built exclusively using OpenJDK starting with Openfire 4.3.2.
-This project is otherwise almost entirely identical to [sameersbn/openfire](/sameersbn/openfire).
+Due to Oracle Java license changes, this image is built exclusively using OpenJDK starting with Openfire 4.8.3
 
-## Contributing
-
-If you find this image useful here's how you can help:
-
-- Send a pull request with your awesome features and bug fixes
-- Help users resolve their [issues](../../issues?q=is%3Aopen+is%3Aissue).
-- Support the development of this image with a [donation](http://www.damagehead.com/donate/)
 
 ## Known issues
 
@@ -36,7 +28,7 @@ Insufficient input validation in the Openfire setup process can cause failures w
 
 ### Openfire doesn't write logs to the normal location
 
-Openfire 4.3 and later use Log4j 2, which uses a new configuration file. Please make sure you include a `log4j2.xml` file in your configuration directory, and use the newest 4.3 or 4.4 image available on Docker Hub.
+Openfire 4.8.3 and later use Log4j 2, which uses a new configuration file. Please make sure you include a `log4j2.xml` file in your configuration directory, and use the newest 4.8.3 or 4.6.4 image available on Docker Hub.
 
 ## Other issues
 
@@ -57,13 +49,13 @@ If the above recommendations do not help then [report your issue](../../issues/n
 Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/gizmotronic/openfire) and is the recommended method of installation.
 
 ```bash
-docker pull gizmotronic/openfire:4.4.4
+docker pull gedeadisurya/gajim:latest
 ```
 
 Alternatively you can build the image yourself.
 
 ```bash
-docker build -t gizmotronic/openfire github.com/gizmotronic/docker-openfire
+docker build -t gedeadisurya/openfire:4.9.0.1 github.com/gedeeinstein/docker-openfire
 ```
 
 ## Quickstart
@@ -74,7 +66,7 @@ Start Openfire using:
 docker run --name openfire -d --restart=always \
   --publish 9090:9090 --publish 5222:5222 --publish 7777:7777 \
   --volume /srv/docker/openfire:/var/lib/openfire \
-  gizmotronic/openfire:4.4.4
+  gedeeinstein/openfire:latest
 ```
 
 *Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
@@ -101,7 +93,7 @@ You may append options to the startup command to configure the JVM:
 ```bash
 docker run -name openfire -d \
   [DOCKER_OPTIONS] \
-  gizmotronic/openfire:4.4.4 \
+  gedeeinstein/openfire:latest \
   -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode
 ```
 
@@ -122,7 +114,7 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull gizmotronic/openfire:4.4.4
+  docker pull gedeeinstein/openfire:latest
   ```
 
   2. Stop the currently running image:
@@ -142,7 +134,7 @@ To upgrade to newer releases:
   ```bash
   docker run -name openfire -d \
     [OPTIONS] \
-    gizmotronic/openfire:4.4.4
+    gedeeinstein/openfire:latest
   ```
 
 ## Shell Access
@@ -157,3 +149,28 @@ docker exec -it openfire bash
 
   * http://www.igniterealtime.org/projects/openfire/
   * https://library.linode.com/communications/xmpp/openfire/ubuntu-12.04-precise-pangolin
+
+
+
+docker run -d \
+  -p 3478:3478 \
+  -p 3479:3479 \
+  -p 448:448 \
+  -p 5222:5222 \
+  -p 5223:5223 \
+  -p 5229:5229 \
+  -p 5262:5262 \
+  -p 5263:5263 \
+  -p 5269:5269 \
+  -p 5270:5270 \
+  -p 5275:5275 \
+  -p 5276:5276 \
+  -p 7070:7070 \
+  -p 7443:7443 \
+  -p 7777:7777 \
+  -p 9090:9090 \
+  -p 9091:9091 \
+  -p 9997:9997 \
+  -v /srv/dev-disk-by-label-KAPIDATA/OpenfireDocker:/var/lib/openfire \
+  -v /srv/dev-disk-by-label-KAPIDATA/OpenfireDocker/Logs:/var/log/openfire \
+  --name OpenfireDev -t gedeadisurya/openfire:4.9.0.1
