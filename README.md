@@ -149,3 +149,28 @@ docker exec -it openfire bash
 
   * http://www.igniterealtime.org/projects/openfire/
   * https://library.linode.com/communications/xmpp/openfire/ubuntu-12.04-precise-pangolin
+
+
+
+docker run -d \
+  -p 3478:3478 \
+  -p 3479:3479 \
+  -p 448:448 \
+  -p 5222:5222 \
+  -p 5223:5223 \
+  -p 5229:5229 \
+  -p 5262:5262 \
+  -p 5263:5263 \
+  -p 5269:5269 \
+  -p 5270:5270 \
+  -p 5275:5275 \
+  -p 5276:5276 \
+  -p 7070:7070 \
+  -p 7443:7443 \
+  -p 7777:7777 \
+  -p 9090:9090 \
+  -p 9091:9091 \
+  -p 9997:9997 \
+  -v /srv/dev-disk-by-label-KAPIDATA/OpenfireDocker:/var/lib/openfire \
+  -v /srv/dev-disk-by-label-KAPIDATA/OpenfireDocker/Logs:/var/log/openfire \
+  --name OpenfireDev -t gedeadisurya/openfire:4.9.0
