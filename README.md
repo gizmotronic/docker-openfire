@@ -55,7 +55,7 @@ docker pull gedeadisurya/gajim:latest
 Alternatively you can build the image yourself.
 
 ```bash
-docker build -t gedeeinstein/openfire github.com/gedeeinstein/docker-openfire
+docker build -t gedeadisurya/openfire:4.9.0.1 github.com/gedeeinstein/docker-openfire
 ```
 
 ## Quickstart
@@ -173,4 +173,4 @@ docker run -d \
   -p 9997:9997 \
   -v /srv/dev-disk-by-label-KAPIDATA/OpenfireDocker:/var/lib/openfire \
   -v /srv/dev-disk-by-label-KAPIDATA/OpenfireDocker/Logs:/var/log/openfire \
-  --name OpenfireDev -t gedeadisurya/openfire:4.9.0
+  --name OpenfireDev -t gedeadisurya/openfire:4.9.0.1
