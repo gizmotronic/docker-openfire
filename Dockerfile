@@ -1,7 +1,8 @@
 FROM openjdk:17-jdk-slim-bullseye
 
-RUN apt-get update && apt-get install -y wget openjdk-11-jre-headless
+# RUN apt-get update && apt-get install -y wget openjdk-11-jre-headless
 
+RUN apt --fix-broken install -y
 ENV OPENFIRE_VERSION=4.9.0 \
     OPENFIRE_USER=openfire \
     OPENFIRE_DATA_DIR=/var/lib/openfire \
